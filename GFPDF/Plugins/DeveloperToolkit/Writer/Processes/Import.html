@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="robots" content="index, follow, all" />
+    <title>GFPDF\Plugins\DeveloperToolkit\Writer\Processes\Import | API</title>
+
+            <link rel="stylesheet" type="text/css" href="../../../../../css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="../../../../../css/bootstrap-theme.min.css">
+        <link rel="stylesheet" type="text/css" href="../../../../../css/sami.css">
+        <script src="../../../../../js/jquery-1.11.1.min.js"></script>
+        <script src="../../../../../js/bootstrap.min.js"></script>
+        <script src="../../../../../js/typeahead.min.js"></script>
+        <script src="../../../../../sami.js"></script>
+        <meta name="MobileOptimized" content="width">
+        <meta name="HandheldFriendly" content="true">
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    
+    
+    </head>
+
+    <body id="class" data-name="class:GFPDF_Plugins_DeveloperToolkit_Writer_Processes_Import" data-root-path="../../../../../">
+            <div id="content">
+        <div id="left-column">
+                <div id="control-panel">
+                <script>
+            $('option[data-version="'+window.projectVersion+'"]').prop('selected', true);
+        </script>
+        <form id="search-form" action="../../../../../search.html" method="GET">
+            <span class="glyphicon glyphicon-search"></span>
+            <input name="search"
+                   class="typeahead form-control"
+                   type="search"
+                   placeholder="Search">
+        </form>
+    </div>
+
+                <div id="api-tree"></div>
+
+        </div>
+        <div id="right-column">
+                <nav id="site-nav" class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-elements">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="../../../../../index.html">API</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-elements">
+                <ul class="nav navbar-nav">
+                    <li><a href="../../../../../classes.html">Classes</a></li>
+                                            <li><a href="../../../../../namespaces.html">Namespaces</a></li>
+                                        <li><a href="../../../../../interfaces.html">Interfaces</a></li>
+                    <li><a href="../../../../../traits.html">Traits</a></li>
+                    <li><a href="../../../../../doc-index.html">Index</a></li>
+                    <li><a href="../../../../../search.html">Search</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+                        <div class="namespace-breadcrumbs">
+            <ol class="breadcrumb">
+                <li><span class="label label-default">class</span></li>
+                        <li><a href="../../../../../GFPDF.html">GFPDF</a></li><li class="backslash">\</li><li><a href="../../../../../GFPDF/Plugins.html">Plugins</a></li><li class="backslash">\</li><li><a href="../../../../../GFPDF/Plugins/DeveloperToolkit.html">DeveloperToolkit</a></li><li class="backslash">\</li><li><a href="../../../../../GFPDF/Plugins/DeveloperToolkit/Writer.html">Writer</a></li><li class="backslash">\</li><li><a href="../../../../../GFPDF/Plugins/DeveloperToolkit/Writer/Processes.html">Processes</a></li><li class="backslash">\</li><li>Import</li>
+            </ol>
+        </div>
+                <div id="page-content">
+                
+    <div class="page-header">
+        <h1>
+            Import
+                
+        </h1>
+    </div>
+
+    <p>    class
+    <strong>Import</strong>        extends <a href="../../../../../GFPDF/Plugins/DeveloperToolkit/Writer/AbstractWriter.html"><abbr title="GFPDF\Plugins\DeveloperToolkit\Writer\AbstractWriter">AbstractWriter</abbr></a>
+</p>
+
+        
+    
+
+    
+    
+    
+    
+            <h2>Methods</h2>
+
+            <div class="container-fluid underlined">
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_addPdf">addPdf</a>(string $path)
+        
+                                            <p>Load a PDF with version 1.4 or 1.5 of the Adobe Spec for use with Mpdf.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_addPage">addPage</a>(int|array $id, array $args = [])
+        
+                                            <p>Display a page, or range of pages, from the loaded PDF in the PDF being rendered</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_addBlankPage">addBlankPage</a>(array $args = [])
+        
+                                            <p>Add a blank page to the PDF being rendered. Use in conjunction with <code>$w-&gt;html()</code>.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    array
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getPdfPageSize">getPdfPageSize</a>()
+        
+                                            <p>Returns the current imported PDF page sizes (with <code>$w-&gt;addPdf()</code>). The class handles the page sizes internally, so you shouldn't need to use this method in your templates.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    array
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getPdfPageIds">getPdfPageIds</a>()
+        
+                                            <p>Returns the current loaded PDF page IDs. The class handles the IDs internally, so you shouldn't need to use this method in your templates.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+            </div>
+
+
+        <h2>Details</h2>
+
+            <div id="method-details">
+                    <div class="method-item">
+                    <h3 id="method_addPdf">
+        <div class="location">at         line 93</div>
+        <code>                    
+    <strong>addPdf</strong>(string $path)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Load a PDF with version 1.4 or 1.5 of the Adobe Spec for use with Mpdf.</p>                    <p><h2>Example</h2>
+
+<pre><code> // Import a PDF
+ $w-&gt;addPdf( __DIR__ . '/pdfs/load-document.pdf' );
+
+ // Load page #1 from PDF imported
+ $w-&gt;addPage(1);
+
+ // Import a 2nd PDF (you won't be able to load pages from PDF #1 after importing PDF #2)
+ $w-&gt;addPdf( __DIR__ . '/pdfs/load-another-document.pdf' );
+
+ // Load page #1 from 2nd PDF Imported
+ $w-&gt;addPage(1);
+</code></pre>
+</p>                            </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$path</td>
+                <td>The absolute path to the PDF being loaded</td>
+            </tr>
+            </table>
+
+            
+            
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a target="_blank" href="http://php.net/BadMethodCallException">BadMethodCallException</a></td>
+                <td>Thrown if the PDF file could not be found</td>
+            </tr>
+                    <tr>
+                <td><a target="_blank" href="http://php.net/Exception">Exception</a></td>
+                <td>An exception will be thrown if you load a PDF that isn't version 1.4 or 1.5 of the Adobe Specification</td>
+            </tr>
+            </table>
+
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_addPage">
+        <div class="location">at         line 127</div>
+        <code>                    
+    <strong>addPage</strong>(int|array $id, array $args = [])
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Display a page, or range of pages, from the loaded PDF in the PDF being rendered</p>                    <p><h2>Example</h2>
+
+<pre><code> // Import a PDF
+ $w-&gt;addPdf( __DIR__ . '/pdfs/load-document.pdf' );
+
+ // Load page #1 from PDF
+ $w-&gt;addPage( 1 );
+
+ // Load a range of pages (pages 2 / 3 / 4 / 5) from the PDF
+ $w-&gt;addPage( [ 2, 5 ] );
+
+ // Load page #2 and set the top-margin to 20mm from the top of the page. This is useful when used with `$w-&gt;html()`
+ $w-&gt;addPage( 2, [ 'margin-top' =&gt; 20 ] )
+</code></pre>
+</p>                            </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>int|array</td>
+                <td>$id</td>
+                <td>The current page to load, or a range of pages to load (max 2 array items)</td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$args</td>
+                <td>Additional page settings to pass to Mpdf. We recommend against trying to override <code>sheet-size</code> or <code>orientation</code> as the method calculates this automatically based off the PDF page size. See http://mpdf.github.io/reference/mpdf-functions/addpagebyarray.html for all available options</td>
+            </tr>
+            </table>
+
+            
+            
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a target="_blank" href="http://php.net/BadMethodCallException">BadMethodCallException</a></td>
+                <td>When <code>$id</code> is an array it should only contain two array items that signify the start and end of the PDF pages to load</td>
+            </tr>
+            </table>
+
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_addBlankPage">
+        <div class="location">at         line 154</div>
+        <code>                    
+    <strong>addBlankPage</strong>(array $args = [])
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Add a blank page to the PDF being rendered. Use in conjunction with <code>$w-&gt;html()</code>.</p>                    <p><h2>Example</h2>
+
+<pre><code> // Load a new page in the generated PDF with a sheet size of 200mm wide by 400mm heigh
+ $w-&gt;addBlankPage( [ 'sheet-size' =&gt; [ 200, 400 ] ] );
+</code></pre>
+</p>                            </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>array</td>
+                <td>$args</td>
+                <td>Additional page settings to pass to Mpdf. See http://mpdf.github.io/reference/mpdf-functions/addpagebyarray.html for all available options</td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getPdfPageSize">
+        <div class="location">at         line 169</div>
+        <code>                    array
+    <strong>getPdfPageSize</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Returns the current imported PDF page sizes (with <code>$w-&gt;addPdf()</code>). The class handles the page sizes internally, so you shouldn't need to use this method in your templates.</p>                                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td>The returned format will include the array key referencing the page number and the value referencing the page width and height: [ 1 => [ 200, 400 ], 2 => [ 150, 400 ] ]</td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getPdfPageIds">
+        <div class="location">at         line 180</div>
+        <code>                    array
+    <strong>getPdfPageIds</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Returns the current loaded PDF page IDs. The class handles the IDs internally, so you shouldn't need to use this method in your templates.</p>                                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td>The returned format will include the array key referencing the page number and the value referencing the page ID: [ 1 => 'ID1', 2 => 'ID2' ]</td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+            </div>
+
+    
+            </div>
+                <div id="footer">
+        Generated by <a href="http://sami.sensiolabs.org/">Sami, the API Documentation Generator</a>.
+    </div>
+
+        </div>
+    </div>
+    </body>
+
+</html>

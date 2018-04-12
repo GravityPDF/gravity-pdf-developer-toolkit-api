@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="robots" content="index, follow, all" />
+    <title>GFPDF\Plugins\DeveloperToolkit\Writer\Writer | API</title>
+
+            <link rel="stylesheet" type="text/css" href="../../../../css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="../../../../css/bootstrap-theme.min.css">
+        <link rel="stylesheet" type="text/css" href="../../../../css/sami.css">
+        <script src="../../../../js/jquery-1.11.1.min.js"></script>
+        <script src="../../../../js/bootstrap.min.js"></script>
+        <script src="../../../../js/typeahead.min.js"></script>
+        <script src="../../../../sami.js"></script>
+        <meta name="MobileOptimized" content="width">
+        <meta name="HandheldFriendly" content="true">
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    
+    
+    </head>
+
+    <body id="class" data-name="class:GFPDF_Plugins_DeveloperToolkit_Writer_Writer" data-root-path="../../../../">
+            <div id="content">
+        <div id="left-column">
+                <div id="control-panel">
+                <script>
+            $('option[data-version="'+window.projectVersion+'"]').prop('selected', true);
+        </script>
+        <form id="search-form" action="../../../../search.html" method="GET">
+            <span class="glyphicon glyphicon-search"></span>
+            <input name="search"
+                   class="typeahead form-control"
+                   type="search"
+                   placeholder="Search">
+        </form>
+    </div>
+
+                <div id="api-tree"></div>
+
+        </div>
+        <div id="right-column">
+                <nav id="site-nav" class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-elements">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="../../../../index.html">API</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-elements">
+                <ul class="nav navbar-nav">
+                    <li><a href="../../../../classes.html">Classes</a></li>
+                                            <li><a href="../../../../namespaces.html">Namespaces</a></li>
+                                        <li><a href="../../../../interfaces.html">Interfaces</a></li>
+                    <li><a href="../../../../traits.html">Traits</a></li>
+                    <li><a href="../../../../doc-index.html">Index</a></li>
+                    <li><a href="../../../../search.html">Search</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+                        <div class="namespace-breadcrumbs">
+            <ol class="breadcrumb">
+                <li><span class="label label-default">class</span></li>
+                        <li><a href="../../../../GFPDF.html">GFPDF</a></li><li class="backslash">\</li><li><a href="../../../../GFPDF/Plugins.html">Plugins</a></li><li class="backslash">\</li><li><a href="../../../../GFPDF/Plugins/DeveloperToolkit.html">DeveloperToolkit</a></li><li class="backslash">\</li><li><a href="../../../../GFPDF/Plugins/DeveloperToolkit/Writer.html">Writer</a></li><li class="backslash">\</li><li>Writer</li>
+            </ol>
+        </div>
+                <div id="page-content">
+                
+    <div class="page-header">
+        <h1>
+            Writer
+                
+        </h1>
+    </div>
+
+    <p>    class
+    <strong>Writer</strong>        extends <a href="../../../../GFPDF/Plugins/DeveloperToolkit/Writer/AbstractWriter.html"><abbr title="GFPDF\Plugins\DeveloperToolkit\Writer\AbstractWriter">AbstractWriter</abbr></a>
+</p>
+
+        
+    
+
+            <div class="description">
+            <p>This class acts as a router for all public methods found in the GFPDF\Plugins\DeveloperToolkit\Writer namespace.</p>            <p>Objects that impliment InterfaceWriter are registered when this object is first created. When methods that don't exist
+are called they get routed through the magic method __call(), which searches through each registered object for a matching
+method name. If found, it passes the arguments directly to the method. This allows a simple API for the
+Toolkit-enabled template files, while still making our code easily maintainable and testible.</p>
+
+<h2>Examples</h2>
+
+<p>Writer is automatically injected into your Toolkit-enabled templates and is accessible via <code>$w</code>. To enable this feature,
+add <code>Toolkit: true</code> to the PDF template header information (where <code>Template Name</code> and <code>Group</code> goes). Alternatively,
+use the WP CLI command <code>wp gpdf create-template "My Custom Template" --enable-toolkit</code>. To get more information about
+the WP CLI command use <code>wp gpdf create-template --help</code>.</p>
+
+<pre><code> // Load our custom CSS styles that'll apply to the PDF template
+ $w-&gt;beginStyles();
+ ?&gt;
+ &lt;style&gt;
+     body {
+         color: #999;
+     }
+ &lt;/style&gt;
+ &lt;?php
+ $w-&gt;endStyles();
+
+ // Load our PDF we want to overlay content onto
+ $w-&gt;addPdf( __DIR__ . '/pdfs/path-to-document.pdf' );
+
+ // Load page 1 which we can then overlay content to
+ $w-&gt;addPage( 1 );
+
+ // Add the text 'My Content' at 50mm from the left, 100mm from the top with a width of 30mm and a height of 5mm
+ $w-&gt;add( 'My content', [ 50, 100, 30, 5 ] );
+
+ // Add a multi-line text snippet (gives you better line-height)
+ $w-&gt;addMulti( 'Content&lt;br&gt;Content&lt;br&gt;Content', [ 20, 80, 100, 50 ] );
+
+ // Load pages 2 thru 4
+ $w-&gt;addPage( [ 2, 4 ] );
+
+ // Add a Checkbox to page 4 at 100mm from the left and 30mm from the top
+ $w-&gt;tick( [ 100, 30 ] );
+
+ // Add an Ellipse to page 4 at 120mm from the left and 50mm from the top (this will mark the center of the ellipse), with a 5mm width and 3mm height
+ $w-&gt;ellipse( [ 120, 50, 5, 3 ] );
+</code></pre>
+
+<p>For more examples, view the individual class documentation in GFPDF\Plugins\DeveloperToolkit\Writer\Processes</p>                    </div>
+    
+    
+    
+    
+            <h2>Methods</h2>
+
+            <div class="container-fluid underlined">
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method___construct">__construct</a>(<a href="../../../../GFPDF/Plugins/DeveloperToolkit/Writer/InterfaceWriter.html"><abbr title="GFPDF\Plugins\DeveloperToolkit\Writer\InterfaceWriter">InterfaceWriter</abbr></a>[] $classes = [])
+        
+                                            <p>Register all classes on initialisation</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_registerClass">registerClass</a>(<a href="../../../../GFPDF/Plugins/DeveloperToolkit/Writer/InterfaceWriter.html"><abbr title="GFPDF\Plugins\DeveloperToolkit\Writer\InterfaceWriter">InterfaceWriter</abbr></a> $class)
+        
+                                            <p>Register the class with the Writer</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    mixed
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method___call">__call</a>(string $name, array $arguments)
+        
+                                            <p>Search through the registered classes for a public method match and call it with the passed arguments</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_addPdf">addPdf</a>(string  $path =  )
+        
+                                            <p>Load a PDF with verison 1.4 or 1.5 of the Adobe Spec for use with Mpdf. See GFPDF\Plugins\DeveloperToolkit\Writer\Processes\Import for full details.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_addPage">addPage</a>(int  $id, array  $args = [] )
+        
+                                            <p>Display a page, or range of pages, from the loaded PDF in the PDF being rendered. See GFPDF\Plugins\DeveloperToolkit\Writer\Processes\Import for full details.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_addBlankPage">addBlankPage</a>(array  $args = [] )
+        
+                                            <p>Add a blank page to the PDF being rendered. See GFPDF\Plugins\DeveloperToolkit\Writer\Processes\Import for full details.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    array
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getPdfPageSize">getPdfPageSize</a>()
+        
+                                            <p>Returns the current loaded PDF page sizes. See GFPDF\Plugins\DeveloperToolkit\Writer\Processes\Import for full details.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    array
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getPdfPageIds">getPdfPageIds</a>()
+        
+                                            <p>Returns the current loaded PDF page IDs. See GFPDF\Plugins\DeveloperToolkit\Writer\Processes\Import for full details.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_add">add</a>(string  $html, array  $position = [], string  $overflow = &#039;auto&#039; )
+        
+                                            <p>Add content to the PDF that has a fixed positioned and is better suited for a single line of text. See GFPDF\Plugins\DeveloperToolkit\Writer\Processes\Single for full details.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_configMulti">configMulti</a>(array  $config =  )
+        
+                                            <p>Sets the new default configuration to apply to all new multi elements. See GFPDF\Plugins\DeveloperToolkit\Writer\Processes\Multi for full details.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getMultiConfig">getMultiConfig</a>()
+        
+                                            <p>Get the current Multi configuration. See GFPDF\Plugins\DeveloperToolkit\Writer\Processes\Multi for full details.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_addMulti">addMulti</a>(string  $html, array  $position = [], string  $overflow = &#039;auto&#039;, array  $config = [] )
+        
+                                            <p>Add content to the PDF that has a fixed positioned and is better configured for multiline output. See GFPDF\Plugins\DeveloperToolkit\Writer\Processes\Multi for full details.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_configTick">configTick</a>(array  $config =  )
+        
+                                            <p>Sets the new default configuration to apply to all new tick elements. See GFPDF\Plugins\DeveloperToolkit\Writer\Processes\Tick for full details.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getTickConfig">getTickConfig</a>()
+        
+                                            <p>Get the current Tick configuration. See GFPDF\Plugins\DeveloperToolkit\Writer\Processes\Tick for full details.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_tick">tick</a>(array  $position, array  $config = [] )
+        
+                                            <p>Adds a tick character to the PDF at the requested coordinates. See GFPDF\Plugins\DeveloperToolkit\Writer\Processes\Tick for full details.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_ellipse">ellipse</a>(array  $position =  )
+        
+                                            <p>Adds an Ellipse to the PDF being rendered. See GFPDF\Plugins\DeveloperToolkit\Writer\Processes\Ellipse for full details.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_addHtml">addHtml</a>(string  $html =  )
+        
+                                            <p>Add HTML directly to Mpdf using the current Y pointer position. See GFPDF\Plugins\DeveloperToolkit\Writer\Processes\Html for full details.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_beginStyles">beginStyles</a>()
+        
+                                            <p>Captures any output and stores it in our buffer. See GFPDF\Plugins\DeveloperToolkit\Writer\Processes\Styles for full details.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    void
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_endStyles">endStyles</a>()
+        
+                                            <p>Takes the captured buffer, strips the <code>style</code> HTML tags and adds it to Mpdf. See GFPDF\Plugins\DeveloperToolkit\Writer\Processes\Styles for full details.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+            </div>
+
+
+        <h2>Details</h2>
+
+            <div id="method-details">
+                    <div class="method-item">
+                    <h3 id="method___construct">
+        <div class="location">at         line 123</div>
+        <code>                    
+    <strong>__construct</strong>(<a href="../../../../GFPDF/Plugins/DeveloperToolkit/Writer/InterfaceWriter.html"><abbr title="GFPDF\Plugins\DeveloperToolkit\Writer\InterfaceWriter">InterfaceWriter</abbr></a>[] $classes = [])
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Register all classes on initialisation</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../../../GFPDF/Plugins/DeveloperToolkit/Writer/InterfaceWriter.html"><abbr title="GFPDF\Plugins\DeveloperToolkit\Writer\InterfaceWriter">InterfaceWriter</abbr></a>[]</td>
+                <td>$classes</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_registerClass">
+        <div class="location">at         line 138</div>
+        <code>                    void
+    <strong>registerClass</strong>(<a href="../../../../GFPDF/Plugins/DeveloperToolkit/Writer/InterfaceWriter.html"><abbr title="GFPDF\Plugins\DeveloperToolkit\Writer\InterfaceWriter">InterfaceWriter</abbr></a> $class)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Register the class with the Writer</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a href="../../../../GFPDF/Plugins/DeveloperToolkit/Writer/InterfaceWriter.html"><abbr title="GFPDF\Plugins\DeveloperToolkit\Writer\InterfaceWriter">InterfaceWriter</abbr></a></td>
+                <td>$class</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method___call">
+        <div class="location">at         line 152</div>
+        <code>                    mixed
+    <strong>__call</strong>(string $name, array $arguments)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Search through the registered classes for a public method match and call it with the passed arguments</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$name</td>
+                <td>The method being called</td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$arguments</td>
+                <td>The method arguments</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>mixed</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><a target="_blank" href="http://php.net/BadMethodCallException">BadMethodCallException</a></td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_addPdf">
+        <div class="location">at         line 108</div>
+        <code>                    void
+    <strong>addPdf</strong>(string  $path =  )
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Load a PDF with verison 1.4 or 1.5 of the Adobe Spec for use with Mpdf. See GFPDF\Plugins\DeveloperToolkit\Writer\Processes\Import for full details.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string </td>
+                <td>$path</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_addPage">
+        <div class="location">at         line 108</div>
+        <code>                    void
+    <strong>addPage</strong>(int  $id, array  $args = [] )
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Display a page, or range of pages, from the loaded PDF in the PDF being rendered. See GFPDF\Plugins\DeveloperToolkit\Writer\Processes\Import for full details.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>int </td>
+                <td>$id</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>array </td>
+                <td>$args</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_addBlankPage">
+        <div class="location">at         line 108</div>
+        <code>                    void
+    <strong>addBlankPage</strong>(array  $args = [] )
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Add a blank page to the PDF being rendered. See GFPDF\Plugins\DeveloperToolkit\Writer\Processes\Import for full details.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>array </td>
+                <td>$args</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getPdfPageSize">
+        <div class="location">at         line 108</div>
+        <code>                    array
+    <strong>getPdfPageSize</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Returns the current loaded PDF page sizes. See GFPDF\Plugins\DeveloperToolkit\Writer\Processes\Import for full details.</p>                                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getPdfPageIds">
+        <div class="location">at         line 108</div>
+        <code>                    array
+    <strong>getPdfPageIds</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Returns the current loaded PDF page IDs. See GFPDF\Plugins\DeveloperToolkit\Writer\Processes\Import for full details.</p>                                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>array</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_add">
+        <div class="location">at         line 108</div>
+        <code>                    void
+    <strong>add</strong>(string  $html, array  $position = [], string  $overflow = &#039;auto&#039; )
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Add content to the PDF that has a fixed positioned and is better suited for a single line of text. See GFPDF\Plugins\DeveloperToolkit\Writer\Processes\Single for full details.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string </td>
+                <td>$html</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>array </td>
+                <td>$position</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>string </td>
+                <td>$overflow</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_configMulti">
+        <div class="location">at         line 108</div>
+        <code>                    void
+    <strong>configMulti</strong>(array  $config =  )
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Sets the new default configuration to apply to all new multi elements. See GFPDF\Plugins\DeveloperToolkit\Writer\Processes\Multi for full details.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>array </td>
+                <td>$config</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getMultiConfig">
+        <div class="location">at         line 108</div>
+        <code>                    void
+    <strong>getMultiConfig</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get the current Multi configuration. See GFPDF\Plugins\DeveloperToolkit\Writer\Processes\Multi for full details.</p>                                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_addMulti">
+        <div class="location">at         line 108</div>
+        <code>                    void
+    <strong>addMulti</strong>(string  $html, array  $position = [], string  $overflow = &#039;auto&#039;, array  $config = [] )
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Add content to the PDF that has a fixed positioned and is better configured for multiline output. See GFPDF\Plugins\DeveloperToolkit\Writer\Processes\Multi for full details.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string </td>
+                <td>$html</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>array </td>
+                <td>$position</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>string </td>
+                <td>$overflow</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>array </td>
+                <td>$config</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_configTick">
+        <div class="location">at         line 108</div>
+        <code>                    void
+    <strong>configTick</strong>(array  $config =  )
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Sets the new default configuration to apply to all new tick elements. See GFPDF\Plugins\DeveloperToolkit\Writer\Processes\Tick for full details.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>array </td>
+                <td>$config</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getTickConfig">
+        <div class="location">at         line 108</div>
+        <code>                    void
+    <strong>getTickConfig</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get the current Tick configuration. See GFPDF\Plugins\DeveloperToolkit\Writer\Processes\Tick for full details.</p>                                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_tick">
+        <div class="location">at         line 108</div>
+        <code>                    void
+    <strong>tick</strong>(array  $position, array  $config = [] )
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Adds a tick character to the PDF at the requested coordinates. See GFPDF\Plugins\DeveloperToolkit\Writer\Processes\Tick for full details.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>array </td>
+                <td>$position</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>array </td>
+                <td>$config</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_ellipse">
+        <div class="location">at         line 108</div>
+        <code>                    void
+    <strong>ellipse</strong>(array  $position =  )
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Adds an Ellipse to the PDF being rendered. See GFPDF\Plugins\DeveloperToolkit\Writer\Processes\Ellipse for full details.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>array </td>
+                <td>$position</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_addHtml">
+        <div class="location">at         line 108</div>
+        <code>                    void
+    <strong>addHtml</strong>(string  $html =  )
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Add HTML directly to Mpdf using the current Y pointer position. See GFPDF\Plugins\DeveloperToolkit\Writer\Processes\Html for full details.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string </td>
+                <td>$html</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_beginStyles">
+        <div class="location">at         line 108</div>
+        <code>                    void
+    <strong>beginStyles</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Captures any output and stores it in our buffer. See GFPDF\Plugins\DeveloperToolkit\Writer\Processes\Styles for full details.</p>                                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_endStyles">
+        <div class="location">at         line 108</div>
+        <code>                    void
+    <strong>endStyles</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Takes the captured buffer, strips the <code>style</code> HTML tags and adds it to Mpdf. See GFPDF\Plugins\DeveloperToolkit\Writer\Processes\Styles for full details.</p>                                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>void</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+            </div>
+
+    
+            </div>
+                <div id="footer">
+        Generated by <a href="http://sami.sensiolabs.org/">Sami, the API Documentation Generator</a>.
+    </div>
+
+        </div>
+    </div>
+    </body>
+
+</html>
