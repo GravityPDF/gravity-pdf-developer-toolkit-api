@@ -104,6 +104,26 @@
             </div>
                     <div class="row">
                 <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_addMultiCenter">addMultiCenter</a>(string $html, array $position = [], string $overflow = &#039;auto&#039;, array $config = [])
+        
+                                            <p>Add Multi-line content to the PDF</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_addMultiRight">addMultiRight</a>(string $html, array $position = [], string $overflow = &#039;auto&#039;, array $config = [])
+        
+                                            <p>Add Multi-line content to the PDF</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
                     void
                 </div>
                 <div class="col-md-8 type">
@@ -130,7 +150,7 @@
             <div id="method-details">
                     <div class="method-item">
                     <h3 id="method_addMulti">
-        <div class="location">at         line 111</div>
+        <div class="location">at         line 110</div>
         <code>                    void
     <strong>addMulti</strong>(string $html, array $position = [], string $overflow = &#039;auto&#039;, array $config = [])
         </code>
@@ -148,8 +168,8 @@ height defaults at the expense of less accurate Y positioning).</p>
 <p>The default configuration is as follows, but can be overriden for each call:</p>
 
 <ul>
-<li>font-size: <code>10pt</code> - Controls the font size used</li>
-<li>line-height: <code>14pt</code> - Controls the line height used</li>
+<li>font-size: <code>UI Font Size|10pt</code> - Controls the font size used</li>
+<li>line-height: <code>(UI Font Size * 1.4)|14pt</code> - Controls the line height used</li>
 <li>strip-br: <code>false</code> - Whether to strip BR tags and replace them with 3 hard spaces.</li>
 </ul>
 
@@ -167,9 +187,6 @@ the configuration defaults.</p>
 
  // Instead of shrinking the content to fit the container, the 'visible' property will allow it to overflow the container
  $w-&gt;addMulti( 'Line 1&lt;br&gt;Line2&lt;br&gt;Line3', [ 20, 50, 30, 5 ], 'visible' );
-
- // The 'hidden' property will crop any content that extends outside the container
- $w-&gt;addMulti( 'Line 1&lt;br&gt;Line2&lt;br&gt;Line3', [ 20, 50, 30, 5 ], 'hidden' );
 
  // Will override the default configuration and auto-strip BR tags and increase the font size on a one-time basis
  $w-&gt;addMulti( 'Line 1&lt;br&gt;Line2&lt;br&gt;Line3', [ 20, 50, 30, 5 ], 'auto', [ 'font-size' =&gt; 14, 'line-height' =&gt; 20, 'strip-br' =&gt; true ] );
@@ -192,7 +209,7 @@ the configuration defaults.</p>
                     <tr>
                 <td>string</td>
                 <td>$overflow</td>
-                <td>Whether to show, hide or resize the $html if the content doesn't fit inside the width/height. Accepted arguments include "auto", "visible" or "hidden"</td>
+                <td>Whether to show or resize the $html if the content doesn't fit inside the width/height. Accepted arguments include "auto" or "visible"</td>
             </tr>
                     <tr>
                 <td>array</td>
@@ -227,8 +244,132 @@ the configuration defaults.</p>
 
             </div>
                     <div class="method-item">
+                    <h3 id="method_addMultiCenter">
+        <div class="location">at         line 165</div>
+        <code>                    
+    <strong>addMultiCenter</strong>(string $html, array $position = [], string $overflow = &#039;auto&#039;, array $config = [])
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Add Multi-line content to the PDF</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$html</td>
+                <td>The content to add to the PDF being rendered</td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$position</td>
+                <td>The X, Y, Width and Height of the element</td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$overflow</td>
+                <td>Whether to show or resize the $html if the content doesn't fit inside the width/height. Accepted arguments include "auto" or "visible"</td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$config</td>
+                <td>Override the default configuration on a per-element basis. Accepted array keys include 'font-size', 'line-height', 'strip-br'</td>
+            </tr>
+            </table>
+
+            
+            
+            
+                            <h4>See also</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>
+                                            <a href="../../../../../GFPDF/Plugins/DeveloperToolkit/Writer/Processes/Multi.html#method_addMulti"><abbr title="GFPDF\Plugins\DeveloperToolkit\Writer\Processes\Multi">Multi</abbr>::addMulti</a>
+                                    </td>
+                <td>for full documentation
+
+## Example
+
+     // Add multi-line content to the current page positioned 20mm from the left, 50mm from the top, with a width of 30mm, a height of 5mm and aligned right
+     $w->addMultiCenter( 'Line 1<br>Line2<br>Line3', [ 20, 50, 30, 5 ] );</td>
+            </tr>
+            </table>
+
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_addMultiRight">
+        <div class="location">at         line 187</div>
+        <code>                    
+    <strong>addMultiRight</strong>(string $html, array $position = [], string $overflow = &#039;auto&#039;, array $config = [])
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Add Multi-line content to the PDF</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$html</td>
+                <td>The content to add to the PDF being rendered</td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$position</td>
+                <td>The X, Y, Width and Height of the element</td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$overflow</td>
+                <td>Whether to show or resize the $html if the content doesn't fit inside the width/height. Accepted arguments include "auto" or "visible"</td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$config</td>
+                <td>Override the default configuration on a per-element basis. Accepted array keys include 'font-size', 'line-height', 'strip-br'</td>
+            </tr>
+            </table>
+
+            
+            
+            
+                            <h4>See also</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>
+                                            <a href="../../../../../GFPDF/Plugins/DeveloperToolkit/Writer/Processes/Multi.html#method_addMulti"><abbr title="GFPDF\Plugins\DeveloperToolkit\Writer\Processes\Multi">Multi</abbr>::addMulti</a>
+                                    </td>
+                <td>for full documentation
+
+## Example
+
+     // Add content to the current page positioned 20mm from the left, 50mm from the top, with a width of 30mm, a height of 5mm and aligned right
+     $w->addMultiRight( 'Line 1<br>Line2<br>Line3', [ 20, 50, 30, 5 ] );</td>
+            </tr>
+            </table>
+
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
                     <h3 id="method_configMulti">
-        <div class="location">at         line 180</div>
+        <div class="location">at         line 229</div>
         <code>                    void
     <strong>configMulti</strong>(array $config)
         </code>
@@ -298,7 +439,7 @@ the configuration defaults.</p>
             </div>
                     <div class="method-item">
                     <h3 id="method_getMultiConfig">
-        <div class="location">at         line 214</div>
+        <div class="location">at         line 263</div>
         <code>                    array
     <strong>getMultiConfig</strong>()
         </code>
